@@ -7,8 +7,8 @@ Be sure to get submodules before building
 
 Place a plist named water.plist in the same dir as the dylib. Use the following keys:
 
-name = app name
-app_id = app's id
+name = app name,
+app_id = app's id,
 language = your language
 
 --------
