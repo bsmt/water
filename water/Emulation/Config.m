@@ -26,7 +26,16 @@ const char *dylib_path()
 
 +(NSDictionary *)configDict
 {
-    return [NSDictionary dictionaryWithContentsOfFile:[Config configPath]];
+    NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:[Config configPath]];
+    if (!plist) // use default values
+    {
+        NSDictionary *defaults = @{@"name": @"game", @"app_id": @123456, @"language": @"en"};
+        return defaults;
+    }
+    else
+    {
+        return plist;
+    }
 }
 
 +(NSString *)saveDir
