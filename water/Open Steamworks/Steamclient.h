@@ -346,11 +346,13 @@ S_API_UNSAFE ISteamUser013* STEAM_CALL SteamUser();
 S_API_UNSAFE ISteamFriends013* STEAM_CALL SteamFriends();
 S_API_UNSAFE ISteamUtils005* STEAM_CALL SteamUtils();
 S_API_UNSAFE ISteamMatchmaking008* STEAM_CALL SteamMatchmaking();
-S_API_UNSAFE ISteamUserStats007* STEAM_CALL SteamUserStats();
+//S_API_UNSAFE ISteamUserStats007* STEAM_CALL SteamUserStats();
+S_API_UNSAFE ISteamUserStats011* STEAM_CALL SteamUserStats();
 S_API_UNSAFE ISteamApps003* STEAM_CALL SteamApps();
 S_API_UNSAFE ISteamNetworking003* STEAM_CALL SteamNetworking();
 S_API_UNSAFE ISteamMatchmakingServers002* STEAM_CALL SteamMatchmakingServers();
-S_API_UNSAFE ISteamRemoteStorage002* STEAM_CALL SteamRemoteStorage();
+//S_API_UNSAFE ISteamRemoteStorage002* STEAM_CALL SteamRemoteStorage();
+S_API_UNSAFE ISteamRemoteStorage007* STEAM_CALL SteamRemoteStorage();
 #endif // VERSION_SAFE_STEAM_API_INTERFACES
 
 // sets whether or not Steam_RunCallbacks() should do a try {} catch (...) {} around calls to issuing callbacks

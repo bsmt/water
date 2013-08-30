@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA0A1C8E17D147E10073C646 /* SteamMatchmaking008.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0A1C8C17D147E10073C646 /* SteamMatchmaking008.mm */; };
+		FA0A1C8F17D147E10073C646 /* SteamMatchmaking008.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0A1C8D17D147E10073C646 /* SteamMatchmaking008.h */; };
 		FA3DBBDC1714DB0600353900 /* SteamRemoteStorage007.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA3DBBDA1714DB0600353900 /* SteamRemoteStorage007.mm */; };
 		FA3DBBDD1714DB0600353900 /* SteamRemoteStorage007.h in Headers */ = {isa = PBXBuildFile; fileRef = FA3DBBDB1714DB0600353900 /* SteamRemoteStorage007.h */; };
 		FAA459151713747700E74809 /* Cloud.h in Headers */ = {isa = PBXBuildFile; fileRef = FAA459131713747700E74809 /* Cloud.h */; };
@@ -260,6 +262,8 @@
 
 /* Begin PBXFileReference section */
 		C136EF1A1715DA0F00A2D07A /* TODO */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		FA0A1C8C17D147E10073C646 /* SteamMatchmaking008.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SteamMatchmaking008.mm; sourceTree = "<group>"; };
+		FA0A1C8D17D147E10073C646 /* SteamMatchmaking008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SteamMatchmaking008.h; sourceTree = "<group>"; };
 		FA3DBBDA1714DB0600353900 /* SteamRemoteStorage007.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SteamRemoteStorage007.mm; sourceTree = "<group>"; };
 		FA3DBBDB1714DB0600353900 /* SteamRemoteStorage007.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SteamRemoteStorage007.h; sourceTree = "<group>"; };
 		FA41D6871710D69800CFD140 /* libsteam_api.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsteam_api.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -797,6 +801,8 @@
 				FAE7379E1712607F0047E3A5 /* SteamUserStats011.mm */,
 				FAE737A11712607F0047E3A5 /* SteamUtils005.h */,
 				FAE737A21712607F0047E3A5 /* SteamUtils005.mm */,
+				FA0A1C8D17D147E10073C646 /* SteamMatchmaking008.h */,
+				FA0A1C8C17D147E10073C646 /* SteamMatchmaking008.mm */,
 			);
 			path = Emulation;
 			sourceTree = "<group>";
@@ -902,6 +908,7 @@
 				FACF60C917D04E7100C7D87E /* ESteamFindFilter.h in Headers */,
 				FACF60C117D04E7100C7D87E /* ControllerCommon.h in Headers */,
 				FACF615817D04E7100C7D87E /* ISteamUser016.h in Headers */,
+				FA0A1C8F17D147E10073C646 /* SteamMatchmaking008.h in Headers */,
 				FACF611F17D04E7100C7D87E /* ISteamGameServer005.h in Headers */,
 				FACF617D17D04E7100C7D87E /* TSteamApp.h in Headers */,
 				FACF613B17D04E7100C7D87E /* ISteamOAuth001.h in Headers */,
@@ -1131,6 +1138,7 @@
 				FAE737A51712607F0047E3A5 /* Steam.mm in Sources */,
 				FAE737A71712607F0047E3A5 /* SteamApps003.mm in Sources */,
 				FAE737A91712607F0047E3A5 /* SteamFriends013.mm in Sources */,
+				FA0A1C8E17D147E10073C646 /* SteamMatchmaking008.mm in Sources */,
 				FAE737AD1712607F0047E3A5 /* SteamRemoteStorage010.mm in Sources */,
 				FAE737B11712607F0047E3A5 /* SteamUser013.mm in Sources */,
 				FAE737B31712607F0047E3A5 /* SteamUserStats011.mm in Sources */,
