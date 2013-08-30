@@ -22,7 +22,7 @@
 
 #include "SteamTypes.h"
 #include "MatchmakingServersCommon.h"
-
+#include "MatchmakingCommon.h"
 
 
 //-----------------------------------------------------------------------------
