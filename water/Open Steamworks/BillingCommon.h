@@ -84,6 +84,8 @@ typedef enum EPaymentMethod
 	k_EPaymentMethodOEMTicket = 256,
 	k_EPaymentMethodSplit = 512,
 	k_EPaymentMethodComplimentary = 1024,
+	k_EPaymentMethodAuthorizedDevice = 30,
+	k_EPaymentMethodMOLPoints = 31,
 } EPaymentMethod;
 
 typedef enum EPurchaseResultDetail

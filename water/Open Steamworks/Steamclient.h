@@ -72,6 +72,7 @@
 #include "ISteamUser014.h"
 #include "ISteamUser015.h"
 #include "ISteamUser016.h"
+#include "ISteamUser017.h"
 
 // OAuth
 #include "ISteamOAuth001.h"
@@ -102,6 +103,7 @@
 #include "ISteamUtils003.h"
 #include "ISteamUtils004.h"
 #include "ISteamUtils005.h"
+#include "ISteamUtils006.h"
 
 // game server
 #include "ISteamGameServer002.h"
@@ -155,6 +157,8 @@
 #include "ISteamRemoteStorage008.h"
 #include "ISteamRemoteStorage009.h"
 #include "ISteamRemoteStorage010.h"
+#include "ISteamRemoteStorage011.h"
+#include "ISteamRemoteStorage012.h"
 
 // content server
 #include "ISteamContentServer001.h"
@@ -183,6 +187,12 @@
 // unified messages
 #include "ISteamUnifiedMessages001.h"
 
+// stream launcher
+#include "ISteamStreamLauncher001.h"
+
+// controller
+#include "ISteamController001.h"
+
 #ifndef NO_ICLIENT
 // client interfaces
 #include "IClientEngine.h"
@@ -210,6 +220,10 @@
 #include "IClientHTTP.h"
 #include "IClientConfigStore.h"
 #include "IClientUnifiedMessages.h"
+#include "IClientStreamLauncher.h"
+#include "IClientNetworkDeviceManager.h"
+#include "IClientDeviceAuth.h"
+#include "IClientMusic.h"
 #endif // NO_ICLIENT
 
 // callback
@@ -327,22 +341,15 @@ S_API bool STEAM_CALL SteamAPI_InitSafe();
 #else
 S_API bool STEAM_CALL SteamAPI_Init();
 
-//S_API_UNSAFE ISteamUser013* STEAM_CALL SteamUser();
-S_API_UNSAFE void* STEAM_CALL SteamUser();
-//S_API_UNSAFE ISteamFriends005* STEAM_CALL SteamFriends();
-S_API_UNSAFE void* STEAM_CALL SteamFriends();
-//S_API_UNSAFE ISteamUtils005* STEAM_CALL SteamUtils();
-S_API_UNSAFE void* STEAM_CALL SteamUtils();
+S_API_UNSAFE ISteamUser013* STEAM_CALL SteamUser();
+S_API_UNSAFE ISteamFriends005* STEAM_CALL SteamFriends();
+S_API_UNSAFE ISteamUtils005* STEAM_CALL SteamUtils();
 S_API_UNSAFE ISteamMatchmaking008* STEAM_CALL SteamMatchmaking();
-//S_API_UNSAFE ISteamUserStats007* STEAM_CALL SteamUserStats();
-S_API_UNSAFE void* STEAM_CALL SteamUserStats();
-//S_API_UNSAFE ISteamApps003* STEAM_CALL SteamApps();
-S_API_UNSAFE void* STEAM_CALL SteamApps();
+S_API_UNSAFE ISteamUserStats007* STEAM_CALL SteamUserStats();
+S_API_UNSAFE ISteamApps003* STEAM_CALL SteamApps();
 S_API_UNSAFE ISteamNetworking003* STEAM_CALL SteamNetworking();
 S_API_UNSAFE ISteamMatchmakingServers002* STEAM_CALL SteamMatchmakingServers();
-//S_API_UNSAFE ISteamRemoteStorage002* STEAM_CALL SteamRemoteStorage();
-S_API_UNSAFE void* STEAM_CALL SteamRemoteStorage();
-
+S_API_UNSAFE ISteamRemoteStorage002* STEAM_CALL SteamRemoteStorage();
 #endif // VERSION_SAFE_STEAM_API_INTERFACES
 
 // sets whether or not Steam_RunCallbacks() should do a try {} catch (...) {} around calls to issuing callbacks

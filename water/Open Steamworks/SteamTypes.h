@@ -83,8 +83,9 @@
 
 
 #ifdef __GNUC__
-	typedef int errno_t;
-	
+	//typedef unsigned int errno_t;
+    typedef int errno_t;
+
 	#ifdef _S4N_
 		typedef unsigned int size_t;
 		#define NULL 0
@@ -499,6 +500,12 @@ typedef enum ShareType_t
 	SHARE_MANUAL = 2,
 } ShareType_t;
 
+typedef uint64 AssetClassId_t;
+const AssetClassId_t k_ulAssetClassIdInvalid = 0x0;
+
+typedef uint32 PhysicalItemId_t;
+const PhysicalItemId_t k_uPhysicalItemIdInvalid = 0x0;
+
 // this is baked into client messages and interfaces as an int, 
 // make sure we never break this.  AppIds and DepotIDs also presently
 // share the same namespace, but since we'd like to change that in the future
@@ -688,6 +695,7 @@ enum ECallbackType
 	k_iSteamScreenshotsCallbacks = 2300,
 	k_iClientAudioCallbacks = 2400,
 	k_iSteamUnifiedMessagesCallbacks = 2500,
+	k_iClientUnifiedMessagesCallbacks = 2600,
 };
 
 

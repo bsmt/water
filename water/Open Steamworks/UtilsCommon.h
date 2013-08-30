@@ -29,6 +29,7 @@
 #define STEAMUTILS_INTERFACE_VERSION_002 "SteamUtils002"
 #define STEAMUTILS_INTERFACE_VERSION_004 "SteamUtils004"
 #define STEAMUTILS_INTERFACE_VERSION_005 "SteamUtils005"
+#define STEAMUTILS_INTERFACE_VERSION_006 "SteamUtils006"
 
 
 
@@ -119,6 +120,11 @@ enum EGamepadTextInputLineMode
 	// TODO: Reverse this enum
 };
 
+enum EWindowType
+{
+	// TODO: Reverse this enum
+};
+
 #pragma pack( push, 8 )
 //-----------------------------------------------------------------------------
 // Purpose: The country of the user changed
@@ -190,5 +196,12 @@ struct CellIDChanged_t
 
 #pragma pack( pop )
 
+class CUtlBuffer
+#ifdef _S4N_
+{
+	int m_iPadding;
+}
+#endif
+;
 
 #endif // UTILSCOMMON_H

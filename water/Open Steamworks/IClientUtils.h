@@ -94,6 +94,11 @@ public:
 	virtual void GamepadTextInputClosed( HSteamPipe hSteamPipe, bool, const char * ) = 0;
 
 	virtual void SetSpew( ESpewGroup eSpewGroup, int32 iSpewLevel, int32 iLogLevel ) = 0;
+	
+	virtual bool BDownloadsDisabled() = 0;
+
+	virtual void SetFocusedWindow( EWindowType eWindowType, uint32 uUnk ) = 0;
+	virtual const char *GetSteamUILanguage() = 0;
 };
 
 #endif // ICLIENTUTILS_H

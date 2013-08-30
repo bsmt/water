@@ -63,7 +63,7 @@ public:
 
 	virtual bool GetUGCDownloadProgress( UGCHandle_t hContent, uint32 *puDownloadedBytes, uint32 *puTotalBytes );
 	virtual bool GetUGCDetails( UGCHandle_t hContent, AppId_t *pnAppID, char **ppchName, int32 *pnFileSizeInBytes, CSteamID *pSteamIDOwner ) = 0;
-	virtual int32 UGCRead( UGCHandle_t hContent, void *pubDest, int32 nDestBufferSize, uint32 uOffset ) = 0;
+	virtual int32 UGCRead( UGCHandle_t hContent, void *pvData, int32 cubDataToRead, uint32 uOffset, EUGCReadAction eAction ) = 0;
 	virtual int32 GetCachedUGCCount() = 0;
 	virtual UGCHandle_t GetCachedUGCHandle( int32 iCachedContent ) = 0;
 
@@ -83,7 +83,7 @@ public:
 	
 	virtual SteamAPICall_t CommitPublishedFileUpdate( AppId_t nAppId, ERemoteStorageFileRoot eRemoteStorageFileRoot, JobID_t hUpdateRequest ) = 0;
 	
-	virtual SteamAPICall_t GetPublishedFileDetails( PublishedFileId_t unPublishedFileId, bool bUseNewCallback ) = 0; // Old callback id = 1310, new callback id = 1318
+	virtual SteamAPICall_t GetPublishedFileDetails( PublishedFileId_t unPublishedFileId, bool bUseNewCallback, uint32 ) = 0; // Old callback id = 1310, new callback id = 1318
 	virtual SteamAPICall_t DeletePublishedFile( PublishedFileId_t unPublishedFileId ) = 0;
 	virtual SteamAPICall_t EnumerateUserPublishedFiles( AppId_t nAppId, uint32 uStartIndex, ERemoteStoragePublishedFileSortOrder eOrder ) = 0;
 	virtual SteamAPICall_t SubscribePublishedFile( AppId_t nAppId, PublishedFileId_t unPublishedFileId ) = 0;
@@ -97,7 +97,7 @@ public:
 	virtual SteamAPICall_t UpdateUserPublishedItemVote( PublishedFileId_t unPublishedFileId, bool bVoteUp ) = 0;
 	virtual SteamAPICall_t GetUserPublishedItemVoteDetails( PublishedFileId_t unPublishedFileId ) = 0;
 	virtual SteamAPICall_t EnumerateUserSharedWorkshopFiles( AppId_t nAppId, CSteamID creatorSteamID, uint32 uStartIndex, SteamParamStringArray_t *pRequiredTags, SteamParamStringArray_t *pExcludedTags ) = 0;
-	virtual SteamAPICall_t EnumeratePublishedWorkshopFiles( AppId_t nAppId, EWorkshopEnumerationType eType, uint32 uStartIndex, uint32 cDays, uint32 cCount, SteamParamStringArray_t *pTags, SteamParamStringArray_t *pUserTags ) = 0;
+	virtual SteamAPICall_t EnumeratePublishedWorkshopFiles( AppId_t nAppId, EWorkshopEnumerationType eType, EPublishedFileInfoMatchingFileType eFileType, uint32 uStartIndex, uint32 cDays, uint32 cCount, SteamParamStringArray_t *pTags, SteamParamStringArray_t *pUserTags ) = 0;
 	
 	virtual EFileRemoteStorageSyncState EGetFileSyncState( AppId_t nAppId, ERemoteStorageFileRoot eRemoteStorageFileRoot, const char *pchFile ) = 0;
 	virtual bool BIsFileSyncing( AppId_t nAppId, ERemoteStorageFileRoot eRemoteStorageFileRoot, const char *pchFile ) = 0;
@@ -124,9 +124,9 @@ public:
 
 	virtual bool SynchronizeApp( AppId_t nAppId, bool bSyncClient, bool bSyncServer ) = 0;
 	virtual bool IsAppSyncInProgress( AppId_t nAppId ) = 0;
-
-	virtual ERemoteStorageFileRoot ERemoteStorageFileRootFromName( const char *pchName ) = 0;
-	virtual const char* PchNameFromERemoteStorageFileRoot( ERemoteStorageFileRoot eRemoteStorageFileRoot ) = 0;
+	
+	virtual void RunAutoCloudOnAppLaunch( AppId_t nAppId ) = 0;
+	virtual void RunAutoCloudOnAppExit( AppId_t nAppId ) = 0;
 	
 	virtual bool ResetFileRequestState( AppId_t nAppId ) = 0;
 
@@ -139,6 +139,7 @@ public:
 	virtual void ResumeSubscribedFileDownloadsForApp( AppId_t nAppId ) = 0;
 	virtual void PauseAllSubscribedFileDownloads() = 0;
 	virtual void ResumeAllSubscribedFileDownloads() = 0;
+	virtual void OnAppLifetime( AppId_t nAppId, bool bUnk ) = 0;
 };
 
 #endif // ICLIENTREMOTESTORAGE_H

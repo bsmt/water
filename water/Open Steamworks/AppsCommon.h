@@ -148,6 +148,9 @@ enum EAppUpdateError
 	k_EAppErrorInvalidPlatform = 29,
 	k_EAppErrorInvalidFileSystem = 30,
 	k_EAppErrorCorruptUpdateFiles = 31,
+	k_EAppUpdateErrorDownloadCorrupt = 32,
+	k_EAppUpdateErrorDownloadDisabled = 33,
+	k_EAppUpdateErrorSharedLibraryLocked = 34,
 };
 
 //-----------------------------------------------------------------------------
@@ -170,6 +173,9 @@ enum EAppOwernshipFlags
 	k_EAppOwernshipFlagsRegionRestricted =	1 << 2,
 	k_EAppOwernshipFlagsLowViolence =		1 << 3,
 	k_EAppOwernshipFlagsInvalidPlatform =	1 << 4,
+	k_EAppOwernshipFlagsSharedLicense =		1 << 5,
+	k_EAppOwernshipFlagsFreeWeekend =		1 << 6,
+	k_EAppOwernshipFlagsLockedLicense =		1 << 7,
 };
 
 enum EAppReleaseState
@@ -189,6 +195,8 @@ struct SHADigestWrapper_t
 	uint32 D;
 	uint32 E;
 };
+
+const int k_cubAppProofOfPurchaseKeyMax = 64;			// max bytes of a legacy cd key we support
 
 #pragma pack( push, 8 )
 //-----------------------------------------------------------------------------
@@ -316,7 +324,7 @@ struct RequestAppProofOfPurchaseKeyResponse_t
 
 	EResult m_eResult;
 	AppId_t m_nAppID;
-	char m_szCDKey[64];	
+	char m_rgchKey[ k_cubAppProofOfPurchaseKeyMax ];	
 };
 #pragma pack( pop )
 

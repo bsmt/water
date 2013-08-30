@@ -14,32 +14,26 @@
 //
 //=============================================================================
 
-#ifndef ECURRENCYCODE_H
-#define ECURRENCYCODE_H
+#ifndef ICLIENTDEVICEAUTH_H
+#define ICLIENTDEVICEAUTH_H
 #ifdef _WIN32
 #pragma once
 #endif
 
+#include "SteamTypes.h"
 
-typedef enum ECurrencyCode
+#define CLIENTDEVICEAUTH_INTERFACE_VERSION "CLIENTDEVICEAUTH_INTERFACE_VERSION001"
+
+abstract_class UNSAFE_INTERFACE IClientDeviceAuth
 {
-	k_ECurrencyCodeInvalid = 0,
-	k_ECurrencyCodeUSD = 1,
-	k_ECurrencyCodeGBP = 2,
-	k_ECurrencyCodeEUR = 3,
-	k_ECurrencyCodeCHF = 4,
-	k_ECurrencyCodeRUB = 5,
-	k_ECurrencyCodePLN = 6,
-	k_ECurrencyCodeBRL = 7,
-	k_ECurrencyCodeJPY = 8,
-	k_ECurrencyCodeNOK = 9,
-	k_ECurrencyCodeIDR = 10,
-	k_ECurrencyCodeMYR = 11,
-	k_ECurrencyCodePHP = 12,
-	k_ECurrencyCodeSGD = 13,
-	k_ECurrencyCodeTHB = 14,
-	k_ECurrencyCodeVND = 15,
-	//k_ECurrencyCodeMax = 16,
-} ECurrencyCode;
+public:
+	virtual uint64 AuthorizeLocalDevice( const char * pubUnk, uint32 cubUnk ) = 0;
+	virtual uint64 DeauthorizeLocalDevice( uint32 uUnk) = 0;
+	virtual uint32 GetDeviceAuthorizations( uint64 * puUnk, uint32 uUnk ) = 0;
+	virtual bool GetDeviceAuthorizationInfo( uint64 uUnk, uint32 * puUnk1, uint32 * puUnk2, uint32 * puUnk3, bool * pbUnk, char * pszUnk1, int32 iUnk1, char * pszUnk2, int32 iUnk2, char * pszUnk3, int32 iUnk3 ) = 0;
+	virtual uint64 RequestAuthorizedDevicesInfo() = 0;
+	virtual bool BIsAuthorizedLender( uint32 uUnk ) = 0;
+	virtual uint32 GetSharedLibraryLockedBy( uint32 uUnk ) = 0;
+};
 
-#endif // ECURRENCYCODE_H
+#endif // ICLIENTDEVICEAUTH_H

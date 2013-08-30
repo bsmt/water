@@ -36,7 +36,6 @@
 
 #define CLIENTUSERSTATS_INTERFACE_VERSION "CLIENTUSERSTATS_INTERFACE_VERSION002"
 
-#include "RemoteStorageCommon.h"
 
 // size limit on stat or achievement name (UTF-8 encoded)
 enum { k_cchStatNameMax = 128 };

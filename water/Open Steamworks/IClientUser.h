@@ -33,6 +33,30 @@ class ClientAppInfo
 #endif
 ;
 
+enum EParentalFeature
+{
+	k_EParentalFeatureInvalid = 0,
+	k_EParentalFeatureStore = 1,
+	k_EParentalFeatureCommunity = 2,
+	k_EParentalFeatureProfile = 3,
+	k_EParentalFeatureFriends = 4,
+	k_EParentalFeatureNews = 5,
+	k_EParentalFeatureTrading = 6,
+	k_EParentalFeatureSettings = 7,
+	k_EParentalFeatureConsole = 8,
+	k_EParentalFeatureBrowser = 9,
+	k_EParentalFeatureOverlay = 10,
+};
+
+// Protobuf, see steammessages_offline.steamclient.proto
+class COffline_OfflineLogonTicket
+#ifdef _S4N_
+{
+	int m_iPadding;
+}
+#endif
+;
+
 abstract_class UNSAFE_INTERFACE IClientUser
 {
 public:
@@ -41,6 +65,7 @@ public:
 	virtual void LogOn( bool bInteractive, CSteamID steamID ) = 0;
 	virtual void LogOnWithPassword( bool bInteractive, const char * pchLogin, const char * pchPassword ) = 0;
 	virtual void LogOnAndCreateNewSteamAccountIfNeeded( bool bInteractive ) = 0;
+	virtual EResult LogOnConnectionless() = 0;
 	virtual void LogOff() = 0;
 	virtual bool BLoggedOn() = 0;
 	virtual ELogonState GetLogonState() = 0;
@@ -107,9 +132,11 @@ public:
 
 	virtual void SetAccountNameFromSteam2( const char *pchAccountName ) = 0;
 	virtual bool SetPasswordFromSteam2( const char *pchPassword ) = 0;
-
+	
+	virtual bool BHasCachedCredentials( const char * pchUnk ) = 0;
 	virtual bool SetAccountNameForCachedCredentialLogin( const char *pchAccountName, bool bUnk ) = 0;
 	virtual void SetLoginInformation( const char *pchAccountName, const char *pchPassword, bool bRememberPassword ) = 0;
+	virtual void SetLauncherType( ELauncherType eLauncherType ) = 0;
 	virtual void ClearAllLoginInformation() = 0;
 
 	virtual void SetAccountCreationTime( RTime32 rtime32Time ) = 0;
@@ -155,6 +182,7 @@ public:
 	virtual bool GetUserConfigFolder( char *pchBuffer, int32 cubBuffer ) = 0;
 
 	virtual bool GetAccountName( char* pchAccountName, uint32 cb ) = 0;
+	virtual bool GetAccountName( CSteamID userID, char * pchAccountName, uint32 cb ) = 0;
 	virtual bool IsPasswordRemembered() = 0;
 
 	virtual bool RequiresLegacyCDKey( AppId_t nAppID ) = 0;
@@ -216,6 +244,9 @@ public:
 
 	virtual SteamAPICall_t RequestEncryptedAppTicket( const void *pUserData, int32 cbUserData ) = 0;
 	virtual bool GetEncryptedAppTicket( void *pTicket, int32 cbMaxTicket, uint32 *pcbTicket ) = 0;
+	
+	virtual int32 GetGameBadgeLevel( int32 nSeries, bool bFoil ) = 0;
+	virtual int32 GetPlayerSteamLevel() = 0;
 
 	virtual void SetAccountLimited( bool bAccountLimited ) = 0;
 	virtual bool BIsAccountLimited() = 0;
@@ -253,7 +284,7 @@ public:
 
 	virtual int32 GetMicroTxnLineItemCount( GID_t gidTransID ) = 0;
 
-	virtual bool BGetMicroTxnLineItem( GID_t gidTransID, uint32 unLineItem, CAmount *pamt, uint32 *punQuantity, char *pchDescription, uint32 cubDescriptionLength, int32 *pRecurringTimeUnit, uint8 *pRecurringFrequency, CAmount *pRecurringAmount ) = 0;
+	virtual bool BGetMicroTxnLineItem( GID_t gidTransID, uint32 unLineItem, CAmount *pamt, uint32 *punQuantity, char *pchDescription, uint32 cubDescriptionLength, int32 *pRecurringTimeUnit, uint8 *pRecurringFrequency, CAmount *pRecurringAmount, bool * pbUnk ) = 0;
 
 	virtual bool BIsSandboxMicroTxn( GID_t gidTransID, bool* pbSandbox ) = 0;
 	
@@ -264,8 +295,9 @@ public:
 	virtual bool BGetWalletBalance( bool *pbHasWallet, CAmount *pamtBalance ) = 0;
 
 	virtual SteamAPICall_t RequestMicroTxnInfo( GID_t gidTransID ) = 0;
-
+	
 	virtual bool BGetAppMinutesPlayed( AppId_t nAppId, int32 *pnForever, int32 *pnLastTwoWeeks ) = 0;
+	virtual uint32 GetAppLastPlayedTime( AppId_t nAppId ) = 0;
 
 	virtual bool BGetGuideURL( AppId_t uAppID, char *pchURL, uint32 cchURL ) = 0;
 
@@ -288,12 +320,15 @@ public:
 
 	virtual bool BSteamGuardNewMachineNotification() = 0;
 	virtual RTime32 GetSteamGuardEnabledTime() = 0;
-	virtual bool GetSteamGuardHistoryEntry( int32 iEntryIndex, RTime32 *puTimestamp, uint32 *puIP, bool *pbIsRemembered ) = 0;
+	virtual bool GetSteamGuardHistoryEntry( int32 iEntryIndex, RTime32 *puTimestamp, uint32 *puIP, bool *pbIsRemembered, char *pchGeolocInfo, int32 cchGeolocInfo, char * pchUnk, int32 cbUnk ) = 0;
+	virtual void SetSteamGuardNewMachineDialogResponse( bool bIsApproved, bool bIsWizardComplete ) = 0;
 
 	virtual bool BAccountCanUseIPT() = 0;
 	virtual void ChangeTwoFactorAuthOptions( int32 eOption ) = 0;
-	virtual void ChangeSteamGuardOptions( ESteamGuardProvider eProvider, bool bRequireCode ) = 0;
+	virtual void ChangeSteamGuardOptions( const char * pchUnk, ESteamGuardProvider eProvider, bool bRequireCode ) = 0;
 	virtual void Set2ndFactorAuthCode( const char* pchAuthCode, bool bDontRememberComputer ) = 0;
+	virtual void SetUserMachineName( const char * pchMachineName ) = 0;
+	virtual bool GetUserMachineName( char * pchMachineName, int32 cbMachineName ) = 0;
 	virtual bool BAccountHasIPTConfig() = 0;
 
 	virtual bool GetEmailDomainFromLogonFailure( char * pchEmailDomain, int32 cbEmailDomain ) = 0;
@@ -315,6 +350,25 @@ public:
 	virtual bool GetAppOwnershipInfo( AppId_t unAppId, RTime32* pRTime32Created, char* pchCountry ) = 0; // Use a 3 bytes buffer for the country
 	
 	virtual void SendGameWebCallback( AppId_t unAppId, const char *szData ) = 0;
+	
+	virtual bool BIsCurrentlyStreaming() = 0;
+	virtual void RequestStopStreaming() = 0;
+	virtual void OnBigPictureStreamingResult( bool, void * ) = 0;
+	virtual void OnBigPictureStreamingDone() = 0;
+	virtual void OnBigPictureStreamRestarting() = 0;
+	
+	virtual void LockParentalLock() = 0;
+	virtual void UnlockParentalLock( const char * pchUnk ) = 0;
+	virtual void BlockApp( AppId_t unAppID ) = 0;
+	virtual void UnblockApp( AppId_t unAppID ) = 0;
+	virtual bool BIsParentalLockEnabled() = 0;
+	virtual bool BIsParentalLockLocked() = 0;
+	virtual bool BIsAppBlocked( AppId_t unAppID ) = 0;
+	virtual bool BIsAppInBlockList( AppId_t unAppID ) = 0;
+	virtual bool BIsFeatureBlocked( EParentalFeature eParentalFeature ) = 0;
+	virtual bool BIsFeatureInBlockList( EParentalFeature eParentalFeature ) = 0;
+	virtual EResult ValidateOfflineLogonTicket( const char * pchUnk ) = 0;
+	virtual bool BGetOfflineLogonTicket( const char * pchUnk, COffline_OfflineLogonTicket * pTicket) = 0;
 };
 
 #endif // ICLIENTUSER_H
