@@ -117,3 +117,9 @@ S_API_UNSAFE void* STEAM_CALL SteamUtils()
     DDLogCVerbose(@"SteamUtils");
     return new SteamUtils005;
 }
+
+S_API_UNSAFE ISteamMatchmaking008* STEAM_CALL SteamMatchmaking()
+{
+    DDLogCVerbose(@"SteamMatchmaking");
+    return new SteamMatchmaking008;
+}
