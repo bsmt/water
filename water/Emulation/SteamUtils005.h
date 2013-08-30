@@ -1,11 +1,3 @@
-//
-//  SteamUtils.h
-//  steam_api
-//
-//  Created by bsmt on 4/6/13.
-//
-//
-
 #ifndef __steam_api__SteamUtils__
 #define __steam_api__SteamUtils__
 
