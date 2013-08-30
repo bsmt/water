@@ -88,7 +88,7 @@ S_API_UNSAFE void* STEAM_CALL SteamApps()
     return new SteamApps003;
 }
 
-S_API_UNSAFE void* STEAM_CALL SteamFriends()
+S_API_UNSAFE ISteamFriends013* STEAM_CALL SteamFriends()
 {
     DDLogCVerbose(@"SteamFriends");
     return new SteamFriends013;

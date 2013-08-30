@@ -342,7 +342,8 @@ S_API bool STEAM_CALL SteamAPI_InitSafe();
 S_API bool STEAM_CALL SteamAPI_Init();
 
 S_API_UNSAFE ISteamUser013* STEAM_CALL SteamUser();
-S_API_UNSAFE ISteamFriends005* STEAM_CALL SteamFriends();
+//S_API_UNSAFE ISteamFriends005* STEAM_CALL SteamFriends();
+S_API_UNSAFE ISteamFriends013* STEAM_CALL SteamFriends();
 S_API_UNSAFE ISteamUtils005* STEAM_CALL SteamUtils();
 S_API_UNSAFE ISteamMatchmaking008* STEAM_CALL SteamMatchmaking();
 S_API_UNSAFE ISteamUserStats007* STEAM_CALL SteamUserStats();
