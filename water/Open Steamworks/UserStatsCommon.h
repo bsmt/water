@@ -52,6 +52,8 @@ typedef uint64 SteamLeaderboard_t;
 // handle to a set of downloaded entries in a leaderboard
 typedef uint64 SteamLeaderboardEntries_t;
 
+typedef uint64 UGCHandle_t;
+
 //-----------------------------------------------------------------------------
 // types of user game stats fields
 // WARNING: DO NOT RENUMBER EXISTING VALUES - STORED IN DATABASE
