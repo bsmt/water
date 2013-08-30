@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		FA0A1C8E17D147E10073C646 /* SteamMatchmaking008.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0A1C8C17D147E10073C646 /* SteamMatchmaking008.mm */; };
 		FA0A1C8F17D147E10073C646 /* SteamMatchmaking008.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0A1C8D17D147E10073C646 /* SteamMatchmaking008.h */; };
+		FA0A1C9217D14D690073C646 /* SteamNetworking003.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0A1C9017D14D690073C646 /* SteamNetworking003.mm */; };
+		FA0A1C9317D14D690073C646 /* SteamNetworking003.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0A1C9117D14D690073C646 /* SteamNetworking003.h */; };
+		FA0A1C9617D14F2D0073C646 /* SteamMatchmakingServers002.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0A1C9417D14F2D0073C646 /* SteamMatchmakingServers002.mm */; };
+		FA0A1C9717D14F2D0073C646 /* SteamMatchmakingServers002.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0A1C9517D14F2D0073C646 /* SteamMatchmakingServers002.h */; };
 		FA3DBBDC1714DB0600353900 /* SteamRemoteStorage007.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA3DBBDA1714DB0600353900 /* SteamRemoteStorage007.mm */; };
 		FA3DBBDD1714DB0600353900 /* SteamRemoteStorage007.h in Headers */ = {isa = PBXBuildFile; fileRef = FA3DBBDB1714DB0600353900 /* SteamRemoteStorage007.h */; };
 		FAA459151713747700E74809 /* Cloud.h in Headers */ = {isa = PBXBuildFile; fileRef = FAA459131713747700E74809 /* Cloud.h */; };
@@ -264,6 +268,10 @@
 		C136EF1A1715DA0F00A2D07A /* TODO */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		FA0A1C8C17D147E10073C646 /* SteamMatchmaking008.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SteamMatchmaking008.mm; sourceTree = "<group>"; };
 		FA0A1C8D17D147E10073C646 /* SteamMatchmaking008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SteamMatchmaking008.h; sourceTree = "<group>"; };
+		FA0A1C9017D14D690073C646 /* SteamNetworking003.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SteamNetworking003.mm; sourceTree = "<group>"; };
+		FA0A1C9117D14D690073C646 /* SteamNetworking003.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SteamNetworking003.h; sourceTree = "<group>"; };
+		FA0A1C9417D14F2D0073C646 /* SteamMatchmakingServers002.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SteamMatchmakingServers002.mm; sourceTree = "<group>"; };
+		FA0A1C9517D14F2D0073C646 /* SteamMatchmakingServers002.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SteamMatchmakingServers002.h; sourceTree = "<group>"; };
 		FA3DBBDA1714DB0600353900 /* SteamRemoteStorage007.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SteamRemoteStorage007.mm; sourceTree = "<group>"; };
 		FA3DBBDB1714DB0600353900 /* SteamRemoteStorage007.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SteamRemoteStorage007.h; sourceTree = "<group>"; };
 		FA41D6871710D69800CFD140 /* libsteam_api.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsteam_api.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -803,6 +811,10 @@
 				FAE737A21712607F0047E3A5 /* SteamUtils005.mm */,
 				FA0A1C8D17D147E10073C646 /* SteamMatchmaking008.h */,
 				FA0A1C8C17D147E10073C646 /* SteamMatchmaking008.mm */,
+				FA0A1C9517D14F2D0073C646 /* SteamMatchmakingServers002.h */,
+				FA0A1C9417D14F2D0073C646 /* SteamMatchmakingServers002.mm */,
+				FA0A1C9117D14D690073C646 /* SteamNetworking003.h */,
+				FA0A1C9017D14D690073C646 /* SteamNetworking003.mm */,
 			);
 			path = Emulation;
 			sourceTree = "<group>";
@@ -921,6 +933,7 @@
 				FACF610F17D04E7100C7D87E /* ISteamFriends002.h in Headers */,
 				FACF612D17D04E7100C7D87E /* ISteamMatchmaking003.h in Headers */,
 				FACF615017D04E7100C7D87E /* ISteamUser008.h in Headers */,
+				FA0A1C9717D14F2D0073C646 /* SteamMatchmakingServers002.h in Headers */,
 				FACF60C417D04E7100C7D87E /* ECurrencyCode.h in Headers */,
 				FACF60E817D04E7100C7D87E /* IClientMasterServerUpdater.h in Headers */,
 				FACF618317D04E7100C7D87E /* TSteamElemInfo.h in Headers */,
@@ -1062,6 +1075,7 @@
 				FACF610B17D04E7100C7D87E /* ISteamContentServer001.h in Headers */,
 				FACF619317D04E7100C7D87E /* TSteamUpdateStats.h in Headers */,
 				FACF610C17D04E7100C7D87E /* ISteamContentServer002.h in Headers */,
+				FA0A1C9317D14D690073C646 /* SteamNetworking003.h in Headers */,
 				FAA459151713747700E74809 /* Cloud.h in Headers */,
 				FACF60E217D04E7100C7D87E /* IClientFriends.h in Headers */,
 				FACF612617D04E7100C7D87E /* ISteamGameServerStats001.h in Headers */,
@@ -1136,6 +1150,7 @@
 			files = (
 				FAE737A41712607F0047E3A5 /* Config.m in Sources */,
 				FAE737A51712607F0047E3A5 /* Steam.mm in Sources */,
+				FA0A1C9217D14D690073C646 /* SteamNetworking003.mm in Sources */,
 				FAE737A71712607F0047E3A5 /* SteamApps003.mm in Sources */,
 				FAE737A91712607F0047E3A5 /* SteamFriends013.mm in Sources */,
 				FA0A1C8E17D147E10073C646 /* SteamMatchmaking008.mm in Sources */,
@@ -1148,6 +1163,7 @@
 				FAE73A1C1712795B0047E3A5 /* WaterFormatter.m in Sources */,
 				FAA459161713747700E74809 /* Cloud.m in Sources */,
 				FA3DBBDC1714DB0600353900 /* SteamRemoteStorage007.mm in Sources */,
+				FA0A1C9617D14F2D0073C646 /* SteamMatchmakingServers002.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

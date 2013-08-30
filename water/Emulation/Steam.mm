@@ -11,6 +11,7 @@
 #include "SteamUserStats011.h"
 #include "SteamUtils005.h"
 #include "SteamMatchmaking008.h"
+#include "SteamNetworking003.h"
 
 #import "DDLog.h"
 #import "DDTTYLogger.h"
@@ -127,7 +128,8 @@ S_API_UNSAFE ISteamMatchmaking008* STEAM_CALL SteamMatchmaking()
 
 S_API_UNSAFE ISteamNetworking003* STEAM_CALL SteamNetworking()
 {
-    
+    DDLogCVerbose(@"SteamNetworking");
+    return new SteamNetworking003;
 }
 
 S_API_UNSAFE ISteamMatchmakingServers002* STEAM_CALL SteamMatchmakingServers()
