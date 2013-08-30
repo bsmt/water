@@ -47,6 +47,17 @@ S_API bool STEAM_CALL SteamAPI_InitSafe()
     return true;
 }
 
+S_API bool STEAM_CALL SteamGameServer_InitSafe( uint32 unIP, uint16 usPort, uint16 usGamePort, uint16 usSpectatorPort, uint16 usQueryPort, EServerMode eServerMode, const char *pchGameDir, const char *pchVersionString )
+{
+    return true;
+}
+
+S_API bool STEAM_CALL SteamGameServer_Init( uint32 unIP, uint16 usPort, uint16 usGamePort, uint16 usSpectatorPort, uint16 usQueryPort, EServerMode eServerMode, const char *pchGameDir, const char *pchVersionString )
+{
+    return true;
+}
+
+
 S_API void SteamAPI_RegisterCallback(class CCallbackBase *pCallback, int iCallback)
 {
     //DDLogCVerbose(@"SteamAPI_RegisterCallback");
@@ -137,4 +148,28 @@ S_API_UNSAFE ISteamMatchmakingServers002* STEAM_CALL SteamMatchmakingServers()
 {
     DDLogCVerbose(@"SteamMatchmakingServers");
     return new SteamMatchmakingServers002;
+}
+
+S_API_UNSAFE ISteamGameServer010* STEAM_CALL SteamGameServer()
+{
+    DDLogCVerbose(@"SteamGameServer");
+    return NULL;
+}
+
+S_API_UNSAFE ISteamNetworking003* STEAM_CALL SteamGameServerNetworking()
+{
+    DDLogCVerbose(@"SteamGameServerNetworking");
+    return NULL;
+}
+
+S_API_UNSAFE ISteamMasterServerUpdater001* STEAM_CALL SteamMasterServerUpdater()
+{
+    DDLogCVerbose(@"SteamMasterServerUpdater");
+    return NULL;
+}
+
+S_API_UNSAFE ISteamClient009* STEAM_CALL SteamClient()
+{
+    DDLogCVerbose(@"SteamClient");
+    return NULL;
 }
