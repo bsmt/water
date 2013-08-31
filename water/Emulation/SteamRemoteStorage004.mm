@@ -109,19 +109,21 @@ bool SteamRemoteStorage004::GetQuota(int32 *pnTotalBytes,
                                      int32 *puAvailableBytes)
 {
     DDLogCVerbose(@"SteamRemoteStorage004::GetQuota");
-    return false;
+    *pnTotalBytes = 0x10000;
+    *puAvailableBytes = 0x10000 * 5; // 5gb
+    return true;
 }
 
 bool SteamRemoteStorage004::IsCloudEnabledForAccount()
 {
     DDLogCVerbose(@"SteamRemoteStorage004::IsCloudEnabledForAccount");
-    return false;
+    return true;
 }
 
 bool SteamRemoteStorage004::IsCloudEnabledForApp()
 {
     DDLogCVerbose(@"SteamRemoteStorage004::IsCloudEnabledForApp");
-    return false;
+    return true;
 }
 
 void SteamRemoteStorage004::SetCloudEnabledForApp(bool bEnabled)

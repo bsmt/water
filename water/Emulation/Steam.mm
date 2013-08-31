@@ -5,7 +5,8 @@
 #include "SteamclientAPI.h"
 #include "SteamApps003.h"
 #include "SteamFriends013.h"
-#include "SteamRemoteStorage007.h"
+#include "SteamRemoteStorage004.h"
+//#include "SteamRemoteStorage007.h"
 //#include "SteamRemoteStorage010.h"
 #include "SteamUser013.h"
 #include "SteamUserStats011.h"
@@ -108,10 +109,10 @@ S_API_UNSAFE ISteamFriends013* STEAM_CALL SteamFriends()
     return new SteamFriends013;
 }
 
-S_API_UNSAFE ISteamRemoteStorage007* STEAM_CALL SteamRemoteStorage()
+S_API_UNSAFE ISteamRemoteStorage004* STEAM_CALL SteamRemoteStorage()
 {
     DDLogCVerbose(@"SteamRemoteStorage");
-    return new SteamRemoteStorage007;
+    return new SteamRemoteStorage004;
 }
 
 S_API_UNSAFE ISteamUser013* STEAM_CALL SteamUser()

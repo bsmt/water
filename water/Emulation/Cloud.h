@@ -36,4 +36,7 @@
 -(NSData *)dataFromFile:(NSString *)fileName;
 -(NSData *)dataFromID:(int)fileID;
 
++(NSString *)escapePath:(NSString *)path;
++(NSString *)unescapePath:(NSString *)path;
+
 @end

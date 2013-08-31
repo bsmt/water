@@ -31,9 +31,9 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
 -(BOOL)initDirectoryForGame:(NSString *)name
 {
-    BOOL exists;
-    [[NSFileManager defaultManager]
-     fileExistsAtPath:[Config saveDir] isDirectory:&exists];
+    BOOL isDir;
+    BOOL exists = [[NSFileManager defaultManager]
+                   fileExistsAtPath:[Config saveDir] isDirectory:&isDir];
     if (exists)
     {
         return TRUE;
@@ -60,6 +60,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
 -(int)addFile:(NSString *)file
 {
+    file = [Cloud escapePath:file];
     NSString *path = [Config getSavePathForFile:file];
     [[NSFileManager defaultManager] createFileAtPath:path
                                             contents:nil attributes:nil];
@@ -73,6 +74,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
 -(void)deleteFile:(NSString *)file
 {
+    file = [Cloud escapePath:file];
     NSError *error = nil;
     NSString *path = [Config getSavePathForFile:file];
     [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
@@ -84,12 +86,14 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
 -(BOOL)fileExists:(NSString *)file
 {
+    file = [Cloud escapePath:file];
     NSString *path = [Config getSavePathForFile:file];
     return [[NSFileManager defaultManager] fileExistsAtPath:path];
 }
 
 -(int)IDForFile:(NSString *)file
 {
+    file = [Cloud escapePath:file];
     NSArray *plist = [NSArray arrayWithContentsOfFile:self.fileList];
     int fileID = [plist indexOfObject:file];
     if (fileID == NSNotFound)
@@ -104,6 +108,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
 -(unsigned int)posixTimestampForFile:(NSString *)file
 {
+    file = [Cloud escapePath:file];
     NSError *error = nil;
     NSString *path = [Config getSavePathForFile:file];
     NSDictionary *attr = [[NSFileManager defaultManager]
@@ -115,11 +120,13 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 -(NSString *)fileNameForID:(int)fileID
 {
     NSArray *plist = [NSArray arrayWithContentsOfFile:self.fileList];
-    return [NSString stringWithString:[plist objectAtIndex:fileID]];
+    return [Cloud unescapePath:[NSString stringWithString:
+                                [plist objectAtIndex:fileID]]];
 }
 
 -(void)writeData:(NSData *)toWrite toFile:(NSString *)fileName
 {
+    fileName = [Cloud escapePath:fileName];
     NSString *path = [Config getSavePathForFile:fileName];
     if (![[NSFileManager defaultManager] fileExistsAtPath:path])
     {
@@ -140,7 +147,8 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
 -(int)appendData:(NSData *)toWrite toFile:(NSString *)fileName
 {
-    NSString *path = [Config getSavePathForFile:fileName];
+    fileName = [Cloud escapePath:fileName];
+    NSString *path = [Config getSavePathForFile:[Cloud escapePath:fileName]];
     if (![[NSFileManager defaultManager] fileExistsAtPath:path])
     {
         [self addFile:fileName];
@@ -161,6 +169,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
 -(int)readDataFromFile:(NSString *)fileName intoBuffer:(void *)buf length:(int)length
 {
+    fileName = [Cloud escapePath:fileName];
     NSString *path = [Config getSavePathForFile:fileName];
     FILE *file = fopen([path UTF8String], "rb+");
     fseek(file, 0, SEEK_SET);
@@ -177,6 +186,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
 -(NSData *)dataFromFile:(NSString *)fileName
 {
+    fileName = [Cloud escapePath:fileName];
     NSString *path = [Config getSavePathForFile:fileName];
     return [NSData dataWithContentsOfFile:path];
 }
@@ -185,6 +195,17 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 {
     NSString *file = [self fileNameForID:fileID];
     return [self dataFromFile:file];
+}
+
++(NSString *)escapePath:(NSString *)path
+{
+    // these windows people do like their backslashes
+    return [path stringByReplacingOccurrencesOfString:@"\\" withString:@"-"];
+}
+
++(NSString *)unescapePath:(NSString *)path
+{
+    return [path stringByReplacingOccurrencesOfString:@"-" withString:@"\\"];
 }
 
 @end

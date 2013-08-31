@@ -29,7 +29,7 @@ const char *dylib_path()
     NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:[Config configPath]];
     if (!plist) // use default values
     {
-        NSDictionary *defaults = @{@"name": @"game", @"app_id": @123456, @"language": @"en"};
+        NSDictionary *defaults = @{NAME_KEY: NAME_DEFAULT, APP_ID_KEY: APP_ID_DEFAULT, LANGUAGE_KEY: LANGUAGE_DEFAULT};
         return defaults;
     }
     else
